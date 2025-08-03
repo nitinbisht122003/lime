@@ -1,6 +1,5 @@
-import type { Product } from "@app/types/limeroad";
+import type { ProductCardViewModel } from "@app/types/limeroad";
 import {
-  FocusRail as FocusRailUI,
   ProductCard as ProductCardUI,
   ProductDescription,
   ProductDiscount,
@@ -10,15 +9,17 @@ import {
   ProductPrice,
   ProductPriceContainer,
   ProductRating
-} from "@app/ui/components";
+} from "@app/ui/components/product-card";
+
+import { FocusRail as FocusRailUI } from "@app/ui/components/focus-rail";
 
 interface FocusRailProps {
-  products: Product[];
+  products: ProductCardViewModel[];
 }
 
-export function RailProductCard({ product }: { product: Product; style?: React.CSSProperties }) {
+export function RailProductCard({ product }: { product: ProductCardViewModel; style?: React.CSSProperties }) {
   const discountPercentage = Math.round(
-    ((product.price - product.selling_price) / product.price) * 100
+    ((product.mrp - product.selling_price) / product.mrp) * 100
   );
   const discountText = `${discountPercentage}% off`;
   return (
@@ -30,7 +31,7 @@ export function RailProductCard({ product }: { product: Product; style?: React.C
       <ProductDescription>
         <ProductPriceContainer className="gap-[6px]">
           <ProductPrice className="text-xs">₹{product.selling_price}</ProductPrice>
-          <ProductMRP className="text-xs">₹{product.price}</ProductMRP>
+          <ProductMRP className="text-xs">₹{product.mrp}</ProductMRP>
           <ProductDiscount>{discountText}</ProductDiscount>
         </ProductPriceContainer>
       </ProductDescription>
