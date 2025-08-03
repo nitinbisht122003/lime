@@ -1,0 +1,68 @@
+{
+  "name": "@app/ui",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    "./components/*": "./src/components/*/index.tsx",
+    "./elements/*": "./src/elements/*/index.tsx",
+    "./hooks/*": "./src/hooks/*.ts",
+    "./icons/*": "./src/icons/*.tsx",
+    "./providers/*": "./src/providers/*/index.tsx",
+    "./types": "./src/types/index.ts",
+    "./utils/*": "./src/utils/*/index.ts"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "tsc",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "devDependencies": {
+    "@app/eslint-config": "workspace:*",
+    "@app/prettier-config": "workspace:*",
+    "@app/tsconfig": "workspace:*",
+    "@app/types": "workspace:*",
+    "@types/react": "catalog:react19",
+    "@types/react-dom": "catalog:react19",
+    "eslint": "catalog:",
+    "prettier": "catalog:",
+    "tailwindcss": "^3.4.17",
+    "typescript": "catalog:"
+  },
+  "peerDependencies": {
+    "nativewind": "catalog:react19",
+    "react": "catalog:react19",
+    "react-dom": "catalog:react19",
+    "react-native": "catalog:react19"
+  },
+  "dependencies": {
+    "@expo/html-elements": "0.4.2",
+    "@gluestack-ui/button": "^1.0.14",
+    "@gluestack-ui/checkbox": "^0.1.39",
+    "@gluestack-ui/icon": "^0.1.27",
+    "@gluestack-ui/input": "^0.1.38",
+    "@gluestack-ui/modal": "^0.1.41",
+    "@gluestack-ui/nativewind-utils": "^1.0.26",
+    "@gluestack-ui/overlay": "^0.1.22",
+    "@gluestack-ui/progress": "^0.1.18",
+    "@gluestack-ui/radio": "^0.1.40",
+    "@gluestack-ui/slider": "^0.1.32",
+    "@gluestack-ui/toast": "^1.0.9",
+    "@gorhom/bottom-sheet": "^5.1.4",
+    "@legendapp/motion": "^2.4.0",
+    "embla-carousel-autoplay": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
+    "react-hls-player": "^3.0.7",
+    "react-intersection-observer": "^9.16.0",
+    "react-native-linear-gradient": "^2.8.3",
+    "react-native-reanimated-carousel": "^4.0.2",
+    "react-native-svg": "^15.11.2",
+    "react-zoom-pan-pinch": "^3.7.0",
+    "vaul": "^1.1.2"
+  },
+  "prettier": "@app/prettier-config"
+}

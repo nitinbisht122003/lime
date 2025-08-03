@@ -1,0 +1,40 @@
+{
+  "name": "@app/services",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    "./limeroad/apis/*": "./src/limeroad/apis/*.ts",
+    "./limeroad/apis": "./src/limeroad/apis/*.ts",
+    "./limeroad/mocks/*": "./src/limeroad/mocks/*.ts",
+    "./limeroad/queries/*": "./src/limeroad/queries/*.ts",
+    "./limeroad/mutations/*": "./src/limeroad/mutations/*.ts",
+    "./limeroad/env": "./src/limeroad/env.ts"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "tsc",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "dependencies": {
+    "@app/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@app/eslint-config": "workspace:*",
+    "@app/prettier-config": "workspace:*",
+    "@app/tsconfig": "workspace:*",
+    "@app/types": "workspace:*",
+    "eslint": "catalog:",
+    "prettier": "catalog:",
+    "typescript": "catalog:"
+  },
+  "peerDependencies": {
+    "@tanstack/react-query": "catalog:"
+  },
+  "prettier": "@app/prettier-config"
+}

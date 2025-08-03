@@ -1,0 +1,12 @@
+{
+  "extends": "@app/tsconfig/internal-package.json",
+  "compilerOptions": {
+    "lib": ["ES2022", "dom", "dom.iterable"],
+    "jsx": "preserve",
+    "rootDir": ".",
+    "module": "esnext",
+    "jsxImportSource": "nativewind"
+  },
+  "include": ["src", "nativewind-env.d.ts", "tailwind-variants.d.ts"],
+  "exclude": ["node_modules"]
+}

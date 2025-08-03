@@ -1,0 +1,18 @@
+{
+  "extends": "@app/tsconfig/base.json",
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["ES2022", "dom", "dom.iterable"],
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "tailwind.config": ["./tailwind.config.ts"]
+    },
+    "plugins": [{ "name": "next" }],
+    "module": "esnext",
+    "jsxImportSource": "nativewind"
+  },
+  "include": [".", ".next/types/**/*.ts", "nativewind-env.d.ts", "tailwind-variants.d.ts"],
+  "exclude": ["node_modules"]
+}

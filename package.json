@@ -1,0 +1,43 @@
+{
+  "name": "lr-frontend",
+  "version": "0.0.0",
+  "description": "Frontend monorepo for Limeroad",
+  "private": true,
+  "engines": {
+    "node": "22.16.0",
+    "pnpm": "10.12.1"
+  },
+  "packageManager": "pnpm@10.12.1+sha512.f0dda8580f0ee9481c5c79a1d927b9164f2c478e90992ad268bbb2465a736984391d6333d2c327913578b2804af33474ca554ba29c04a8b13060a717675ae3ac",
+  "scripts": {
+    "build": "turbo run build",
+    "clean": "git clean -xdf node_modules",
+    "clean:workspaces": "turbo run clean",
+    "dev": "turbo watch dev --continue",
+    "dev:next": "turbo watch dev -F @app/nextjs...",
+    "format": "turbo run format --continue -- --cache --cache-location .cache/.prettiercache",
+    "format:fix": "turbo run format --continue -- --write --cache --cache-location .cache/.prettiercache",
+    "lint": "turbo run lint --continue -- --cache --cache-location .cache/.eslintcache",
+    "lint:fix": "turbo run lint --continue -- --fix --cache --cache-location .cache/.eslintcache",
+    "lint:ws": "pnpm dlx sherif@latest -f",
+    "postinstall": "pnpm lint:ws",
+    "start": "turbo run start",
+    "start:next": "turbo run start -F @app/nextjs...",
+    "typecheck": "turbo run typecheck"
+  },
+  "devDependencies": {
+    "@app/prettier-config": "workspace:*",
+    "@turbo/gen": "catalog:turbo",
+    "prettier": "catalog:",
+    "turbo": "catalog:turbo",
+    "typescript": "catalog:"
+  },
+  "pnpm": {
+    "overrides": {
+      "next": "catalog:next15"
+    },
+    "patchedDependencies": {
+      "@gluestack-ui/nativewind-utils@1.0.26": "patches/@gluestack-ui__nativewind-utils@1.0.26.patch"
+    }
+  },
+  "prettier": "@app/prettier-config"
+}

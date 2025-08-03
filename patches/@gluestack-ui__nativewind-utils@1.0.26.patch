@@ -1,0 +1,58 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+deleted file mode 100644
+index c664e88762a99024fe100c86539832eeda2beee8..0000000000000000000000000000000000000000
+diff --git a/withStyleContext/index.d.ts b/withStyleContext/index.d.ts
+index 10b42521a6dae950fe4e4187f1c2cc54b20cf9c8..8291e257da3d0992f695328e856946a9f6268588 100644
+--- a/withStyleContext/index.d.ts
++++ b/withStyleContext/index.d.ts
+@@ -1,7 +1,7 @@
+ import React from 'react';
+-type WithStyleContextProps = {
+-    context?: any;
++type WithStyleContextProps<T = any> = {
++  context?: T;
+ };
+-export declare const withStyleContext: <T extends React.ComponentType<any>>(Component: T, scope?: string) => React.ForwardRefExoticComponent<React.PropsWithoutRef<React.ComponentProps<T>> & WithStyleContextProps & React.RefAttributes<T>>;
+-export declare const useStyleContext: (scope?: string) => any;
++export declare const withStyleContext: <T, K extends React.ComponentType<any>>(Component: K, scope?: string) => React.ForwardRefExoticComponent<React.PropsWithoutRef<React.ComponentProps<K>> & WithStyleContextProps<T> & React.RefAttributes<K>>;
++export declare const useStyleContext: <T extends {}>(scope?: string) => T;
+ export {};
+diff --git a/withStyleContext/index.tsx b/withStyleContext/index.tsx
+index 59d04cf7fc242383119504fd8c513c7cb99e247c..68e618bc5d06d72b1201f82f7346fc3f0ce38cef 100644
+--- a/withStyleContext/index.tsx
++++ b/withStyleContext/index.tsx
+@@ -2,11 +2,11 @@
+ import React from 'react';
+ import { ParentContext } from '../context';
+ import { useParentContext } from '../context';
+-type WithStyleContextProps = {
+-  context?: any;
++type WithStyleContextProps<T = any> = {
++  context?: T;
+ };
+-export const withStyleContext = <T extends React.ComponentType<any>>(
+-  Component: T,
++export const withStyleContext = <T, K extends React.ComponentType<any>>(
++  Component: K,
+   scope: string = 'Global'
+ ) => {
+   return React.forwardRef(({ context, ...props }, ref) => {
+@@ -24,13 +24,13 @@ export const withStyleContext = <T extends React.ComponentType<any>>(
+       </ParentContext.Provider>
+     );
+   }) as React.ForwardRefExoticComponent<
+-    React.ComponentPropsWithoutRef<T> &
+-      WithStyleContextProps &
+-      React.RefAttributes<T>
++    React.ComponentPropsWithoutRef<K> &
++      WithStyleContextProps<T> &
++      React.RefAttributes<K>
+   >;
+ };
+ 
+-export const useStyleContext = (scope: string = 'Global') => {
++export const useStyleContext = <T extends {}>(scope: string = 'Global') => {
+   const parentContextValues = useParentContext();
+-  return parentContextValues[scope];
++  return parentContextValues[scope] as T;
+ };
